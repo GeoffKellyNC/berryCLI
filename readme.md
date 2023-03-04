@@ -31,5 +31,5 @@ Commands:
 
  IDEAS
 
- Code completion to fix errors. One prompt asks for the codes and saves that to variable and then askes for the error. Third prompt asks for programming language. The prompt will put them togehter to ask them to find the error.
+ Code completion to fix errors. One prompt asks for the codes and saves that to variable and then askes for the error.+ Third prompt asks for programming language. The prompt will put them togehter to ask them to find the error.
     

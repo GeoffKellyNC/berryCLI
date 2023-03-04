@@ -45,7 +45,8 @@ def turboChat(running: bool) -> None:
                     running = False
                     return
                 case _:
-                    print('Not A Valid Choice')
+                    print('Not a valid Command.')
+                    return
         
         
         aiRes: dict = berry.askTurbo(prompt)
