@@ -55,6 +55,10 @@ def main() -> None:
                         else:
                             pass
                     continue
+                case 'omi':
+                    engine: str = input('Enter Model ID: ')
+                    engineData: dict = berry.engineInfo(engine)
+                    continue
                 case _:
                     print('Not a valid Command.')
                 
