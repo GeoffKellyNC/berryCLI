@@ -33,7 +33,7 @@ def main() -> None:
                     helpCommand()
                     continue
                 case _:
-                    print('Not a valid Command')
+                    print('Not a valid Command.')
                 
         
         match _iPrompt:
