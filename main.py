@@ -3,6 +3,8 @@ from models.Berry import Berry
 from functions.turboChat import turboChat
 from functions.pokeFunc import pokeFunc
 from functions.deviceControl import deviceControl
+from functions.config import configure
+from functions.kill import kill
 from termcolor import colored
 import json
 
@@ -12,17 +14,13 @@ print(colored('            BERRY CLI TOOLS', 'red'))
 print(colored('------------------------------------------------------', 'yellow'))
 
 with open('./config.json') as f:
-    config: str = json.load(f)
+    config: dict = json.load(f)
     
 running: bool = True
 
 openai_api_key: str = config['OPEN_AI_KEY']
 
 
-def killAll():
-    global running
-    running = False
-    return
 
 def main() -> None:
     print('Done')
@@ -30,7 +28,7 @@ def main() -> None:
     global running
     global openai_api_key
     
-    berry = Berry(openai_api_key)
+    berry: object = Berry(openai_api_key)
     
     while running:
         _iPrompt: str = input('HOME -> ')
@@ -40,7 +38,7 @@ def main() -> None:
             match command:
                 case 'k':   
                     print(colored('Killing Program!', 'red'))
-                    killAll()
+                    kill()
                     return
                 case 'ts':
                     print('TEST WORKED!')
@@ -66,7 +64,7 @@ def main() -> None:
                 
         
         match _iPrompt:
-            case "tc":
+            case "turbo":
                 turboChat(running)
                 continue
             case "poke":
@@ -74,6 +72,9 @@ def main() -> None:
                 continue
             case "device":
                 deviceControl()
+                continue
+            case "config":
+                configure()
                 continue
             case _:
                 print('Not a valid Command!')

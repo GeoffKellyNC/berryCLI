@@ -8,6 +8,7 @@ turboActive: bool = False
 with open('./config.json') as f:
     config: str = json.load(f)
 
+
 def turboChat(running: bool) -> None:
     print(colored('------------------------------------------------------', 'yellow'))
     print(colored('            GPT-3.5-TURBO MODEL', 'red'))
@@ -59,4 +60,4 @@ def turboChat(running: bool) -> None:
         
         aiRes: dict = berry.askTurbo(prompt)
         
-        print(colored(aiRes["response"], "light_green"),colored(f'- T: {aiRes["usage"]["total_tokens"]}', "cyan"), colored(f'-ST: {aiRes["sessionTokenTotal"]}'))
+        print(colored(aiRes["response"], "light_green"),colored(f'- T: {aiRes["usage"]["total_tokens"]}', "cyan"), colored(f'-ST: {aiRes["sessionTokenTotal"]}'), colored(f'-$:{aiRes["sessionPrice"]:.6f}'))

@@ -8,8 +8,12 @@ class BerryTurbo:
         self._engine = "gpt-3.5-turbo"
         self._baseURL = 'https://api.openai.com/v1/'
         self._context = [{"role": "system", "content": "You are a cool hip young ai."} ]
-        self._tokensUsed = 0;
+        self._tokensUsed = 0
+        self._priceRate = 0.000002
+        self._sessionPrice = 0
         
+    @property
+    
     def _getEngine(self) -> str:
         return self._engine
     
@@ -30,6 +34,10 @@ class BerryTurbo:
         newTotal: int = self._tokensUsed + newTokens
         self._updateUsedTokens(newTotal)
         return newTotal
+    
+    def updateSessionPrice(self, tokens) -> int:
+        self._sessionPrice = self._priceRate * tokens
+        return self._sessionPrice
         
     
     def askTurbo(self, prompt: str) -> None:
@@ -47,10 +55,13 @@ class BerryTurbo:
         
         totalTokensSession = self.increaseTokens(completion.usage["total_tokens"])
         
+        sessionPrice = self.updateSessionPrice(completion.usage["total_tokens"])
+        
         return {
                 "response": aiRes["content"], 
                 "usage": completion.usage,
-                "sessionTokenTotal": totalTokensSession
+                "sessionTokenTotal": totalTokensSession,
+                "sessionPrice": sessionPrice
                 }
         
         
