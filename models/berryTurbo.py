@@ -2,7 +2,6 @@ import openai
 from termcolor import colored
 
 
-
 class BerryTurbo:
     def __init__(self, apiKey) -> None:
         self._apiKey = apiKey
@@ -28,19 +27,26 @@ class BerryTurbo:
         return self._tokensUsed
     
     def increaseTokens(self, newTokens) -> int:
-        newTotal = self._tokensUsed + newTokens
+        newTotal: int = self._tokensUsed + newTokens
         self._updateUsedTokens(newTotal)
         return newTotal
         
     
     def askTurbo(self, prompt: str) -> None:
         openai.api_key: str = self._apiKey
+        
         self._addToContext({"role": "user", "content": prompt})
-        message = self._getContext()
+        
+        message: list[dict[str,str]] = self._getContext()
+        
         completion: dict = openai.ChatCompletion.create(model = self._engine, messages = message)
+        
         aiRes = completion.choices[0].message
+        
         self._addToContext({"role": "assistant", "content": aiRes["content"]})
+        
         totalTokensSession = self.increaseTokens(completion.usage["total_tokens"])
+        
         return {
                 "response": aiRes["content"], 
                 "usage": completion.usage,

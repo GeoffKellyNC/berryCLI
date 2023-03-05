@@ -1,12 +1,14 @@
 from commands.help import helpCommand
 from models.Berry import Berry
 from functions.turboChat import turboChat
+from functions.pokeFunc import pokeFunc
+from functions.deviceControl import deviceControl
 from termcolor import colored
 import json
 
 
 print(colored('------------------------------------------------------', 'yellow'))
-print(colored('           WELCOME TO BERRY CLI', 'red'))
+print(colored('            BERRY CLI TOOLS', 'red'))
 print(colored('------------------------------------------------------', 'yellow'))
 
 with open('./config.json') as f:
@@ -31,7 +33,7 @@ def main() -> None:
     berry = Berry(openai_api_key)
     
     while running:
-        _iPrompt: str = input('Command:')
+        _iPrompt: str = input('HOME -> ')
         
         if(_iPrompt.startswith('++')):
             command = _iPrompt[2:]
@@ -66,6 +68,12 @@ def main() -> None:
         match _iPrompt:
             case "tc":
                 turboChat(running)
+                continue
+            case "poke":
+                pokeFunc()
+                continue
+            case "device":
+                deviceControl()
                 continue
             case _:
                 print('Not a valid Command!')

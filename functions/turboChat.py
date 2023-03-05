@@ -1,6 +1,7 @@
 from termcolor import colored
 from models.berryTurbo import BerryTurbo
 import json
+import os
 
 turboActive: bool = False
 
@@ -8,8 +9,16 @@ with open('./config.json') as f:
     config: str = json.load(f)
 
 def turboChat(running: bool) -> None:
+    print(colored('------------------------------------------------------', 'yellow'))
+    print(colored('            GPT-3.5-TURBO MODEL', 'red'))
+    print(colored('------------------------------------------------------', 'yellow'))
+    
+    
     global turboActive
     turboActive = True
+    
+    pid = os.getpid()
+    
     print('NOW CHATTING WITH TURBO CHAT MODEL')
     openai_api_key: str = config['OPEN_AI_KEY']
         
@@ -17,8 +26,7 @@ def turboChat(running: bool) -> None:
     
     while(turboActive):
         
-        print(colored('-----------------------------------------------', "yellow"))
-        prompt: str = input(colored('USER -> ', "cyan", "on_black"))
+        prompt: str = input(colored('TURBO -> ', "cyan", "on_black"))
         
         if(prompt.startswith('++')):
             match prompt:
@@ -42,7 +50,7 @@ def turboChat(running: bool) -> None:
                     continue
                 case '++kill':
                     print(colored('Killing Program!', 'red'))
-                    running = False
+                    os.kill(pid,9)
                     return
                 case _:
                     print('Not a valid Command.')
