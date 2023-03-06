@@ -4,13 +4,13 @@ from termcolor import colored
 
 class BerryTurbo:
     def __init__(self, apiKey) -> None:
-        self._apiKey = apiKey
-        self._engine = "gpt-3.5-turbo"
-        self._baseURL = 'https://api.openai.com/v1/'
-        self._context = [{"role": "system", "content": "You are a cool hip young ai."} ]
-        self._tokensUsed = 0
-        self._priceRate = 0.000002
-        self._sessionPrice = 0
+        self._apiKey: str = apiKey
+        self._engine: str = "gpt-3.5-turbo"
+        self._baseURL: str = 'https://api.openai.com/v1/'
+        self._context: list[dict[str, str]] = [{"role": "system", "content": "You are a cool hip young ai."} ]
+        self._tokensUsed: int = 0
+        self._priceRate: float = 0.000002
+        self._sessionPrice: float = 0
         
     @property
     

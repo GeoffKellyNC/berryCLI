@@ -1,7 +1,9 @@
 from termcolor import colored
 from models.poke import Poke
+from functions.commandHandle import commandHandler
 import json
 import os
+
 
 with open('./config.json') as f:
     config: str = json.load(f)
@@ -21,6 +23,7 @@ def pokeFunc() -> None:
         print(colored("-------------------------------------------------------", "red"))
         
         command = input(colored("Poke -> ", "yellow"))
+        
         
         if(command.startswith('++')):
             c: str = command[2:]

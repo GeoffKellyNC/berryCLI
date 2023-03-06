@@ -1,7 +1,7 @@
 from termcolor import colored
-import os
 from functions.goveeFunc import goveeFunc
-
+from functions.lifexFunc import lifexFunc
+from functions.kill import kill
 
 
     
@@ -9,7 +9,6 @@ from functions.goveeFunc import goveeFunc
 def deviceControl() -> None:
     deviceControlActive: bool = True
     
-    pid = os.getpid()
     
     while(deviceControlActive):
         print(colored("-------------------------------------------------------", "red"))
@@ -17,6 +16,7 @@ def deviceControl() -> None:
         print(colored("-------------------------------------------------------", "red"))
         
         command: str = input(colored("Device -> ", "yellow"))
+            
         
         if(command.startswith('++')):
             c: str = command[2:]
@@ -27,15 +27,18 @@ def deviceControl() -> None:
                     return
                 case 'kill':
                     print('Killing Program')
-                    os.kill(pid, 9)
+                    kill()
                     return
                 case _:
-                    goveeFunc()
+                    print('Not A valid Command...')
                     continue
                 
         match command:
             case 'govee':
                 goveeFunc()
+                continue
+            case 'lifex':
+                lifexFunc()
                 continue
             case _:
                 print('Not a valid command....')

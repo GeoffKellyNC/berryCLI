@@ -1,7 +1,8 @@
 from termcolor import colored
 from models.govee import Govee
+from functions.kill import kill
+from functions.commandHandle import commandHandler
 import json
-import os
 import time
 
 
@@ -18,7 +19,6 @@ def goveeFunc():
     
     g: object = Govee(govee_api_key)
     
-    pid = os.getpid()
     
     while(goveeActive):
         print(colored("-------------------------------------------------------", "red"))
@@ -31,7 +31,7 @@ def goveeFunc():
         for i, d in enumerate(availableDevices):
             print(colored(f'{i + 1}.', "yellow"), colored(f'{d["deviceName"]}', 'cyan'))
         
-        command: str = input(colored("Govee -> ", "yellow"))
+        command: str = input(colored("Govee -> ", "yellow"))     
         
         if(command.startswith('++')):
             c: str = command[2:]
@@ -42,7 +42,7 @@ def goveeFunc():
                     return
                 case 'kill':
                     print('Killing Program')
-                    os.kill(pid, 9)
+                    kill()
                     return
                 case _:
                     print('Not A valid Command')

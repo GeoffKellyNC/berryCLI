@@ -36,7 +36,7 @@ def main() -> None:
         if(_iPrompt.startswith('++')):
             command = _iPrompt[2:]
             match command:
-                case 'k':   
+                case 'kill':   
                     print(colored('Killing Program!', 'red'))
                     kill()
                     return

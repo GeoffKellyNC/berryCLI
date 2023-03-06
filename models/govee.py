@@ -12,6 +12,7 @@ class Govee:
         
     def getDevices(self) -> list[str]:
         try:
+            print('Getting Govee Devices') #! REMOVE
             goveeRes = requests.get(self._baseURL, headers = self._headers)
             goveeRes.raise_for_status()
             deviceData = goveeRes.json()
