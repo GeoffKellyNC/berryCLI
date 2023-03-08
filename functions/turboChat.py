@@ -60,4 +60,4 @@ def turboChat(running: bool) -> None:
         
         aiRes: dict = berry.askTurbo(prompt)
         
-        print(colored(aiRes["response"], "light_green"),colored(f'- T: {aiRes["usage"]["total_tokens"]}', "cyan"), colored(f'-ST: {aiRes["sessionTokenTotal"]}'), colored(f'-$:{aiRes["sessionPrice"]:.6f}'))
+        print(colored('Berry -> ', 'red'),colored(aiRes["response"], "yellow"),colored(f'- T: {aiRes["usage"]["total_tokens"]}', "cyan"), colored(f'-ST: {aiRes["sessionTokenTotal"]}'), colored(f'-$:{aiRes["sessionPrice"]:.6f}','cyan'))

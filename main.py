@@ -5,6 +5,7 @@ from functions.pokeFunc import pokeFunc
 from functions.deviceControl import deviceControl
 from functions.config import configure
 from functions.kill import kill
+from functions.fileDelete import delete_files_in_folders
 from termcolor import colored
 import json
 
@@ -75,6 +76,9 @@ def main() -> None:
                 continue
             case "config":
                 configure()
+                continue
+            case "test":
+                delete_files_in_folders()
                 continue
             case _:
                 print('Not a valid Command!')

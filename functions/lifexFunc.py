@@ -25,7 +25,7 @@ def lifexFunc() -> None:
         availableDevices: list[dict] = l.getDevices()
         
         for i, d in enumerate(availableDevices):
-            print(colored(f'{i+1}.', "yellow"), colored(f'{d["label"]}', "cyan"))
+            print(colored(f'{i+1}.', "yellow"), colored(f'{d["label"]} - {d["id"]}', "cyan"))
         
         command: str = input(colored("Lifex -> ", "yellow"))
         
