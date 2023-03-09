@@ -4,6 +4,7 @@ from functions.kill import kill
 from functions.commandHandle import commandHandler
 import json
 import time
+import os
 
 
 with open('./config.json') as f:
@@ -44,6 +45,9 @@ def goveeFunc():
                     print('Killing Program')
                     kill()
                     return
+                case 'clear':
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    continue
                 case _:
                     print('Not A valid Command')
                     continue

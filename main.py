@@ -1,6 +1,6 @@
 from commands.help import helpCommand
 from models.Berry import Berry
-from functions.turboChat import turboChat
+from functions.gpt import gpt
 from functions.pokeFunc import pokeFunc
 from functions.deviceControl import deviceControl
 from functions.config import configure
@@ -8,6 +8,7 @@ from functions.kill import kill
 from functions.fileDelete import delete_files_in_folders
 from termcolor import colored
 import json
+import os
 
 
 print(colored('------------------------------------------------------', 'yellow'))
@@ -47,6 +48,13 @@ def main() -> None:
                 case 'h':
                     helpCommand()
                     continue
+                case 'ns':
+                    print('Current Name Space for Berry CLI')
+                    print(dir())
+                    continue
+                case 'clear':
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    continue
                 case 'om':
                     models = berry.getEngines()
                     for model in models:
@@ -65,8 +73,8 @@ def main() -> None:
                 
         
         match _iPrompt:
-            case "turbo":
-                turboChat(running)
+            case "gpt":
+                gpt()
                 continue
             case "poke":
                 pokeFunc()

@@ -1,6 +1,7 @@
 from termcolor import colored
 from functions.goveeFunc import goveeFunc
 from functions.lifexFunc import lifexFunc
+from functions.sonosFunc import sonosFunc
 from functions.kill import kill
 
 
@@ -39,6 +40,9 @@ def deviceControl() -> None:
                 continue
             case 'lifex':
                 lifexFunc()
+                continue
+            case 'sonos':
+                sonosFunc()
                 continue
             case _:
                 print('Not a valid command....')
