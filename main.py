@@ -6,6 +6,7 @@ from functions.deviceControl import deviceControl
 from functions.config import configure
 from functions.kill import kill
 from functions.fileDelete import delete_files_in_folders
+from berry.whitelist import whitelist
 from termcolor import colored
 import json
 import os
@@ -84,6 +85,9 @@ def main() -> None:
                 continue
             case "config":
                 configure()
+                continue
+            case "whitelist":
+                whitelist()
                 continue
             case "test":
                 delete_files_in_folders()

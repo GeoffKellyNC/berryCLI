@@ -4,13 +4,16 @@ import requests
 
 
 class Berry:
-    def __init__(self, apiKey: str, engine: str = None) -> None:
+    def __init__(self, apiKey: str, engine: str = 'gpt-3.5-turbo') -> None:
         self._apiKey: str = apiKey
         self._engine: str = engine
         self._baseURL: str = 'https://api.openai.com/v1/'
         self._context: list[dict[str, str]] = [{"role": "system", "content": "You are a cool hip young ai."} ]
         self._tokensUsed: int = 0
-        self._priceRate: object[str, float] = {"gpt-3.5-turbo": 0.000002}
+        self._priceRate: dict[str, float] = {
+            "gpt-3.5-turbo": 0.000002,
+            "other-engine": 0.000001  
+        }
         self._sessionPrice: float = 0
         self._headers: dict = {"Authorization": f"Bearer {self._apiKey}"}
         

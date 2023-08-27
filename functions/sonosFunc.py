@@ -1,5 +1,4 @@
 from models.Sonos import Sonos
-import soco
 from termcolor import colored
 from functions.kill import kill
 import os
@@ -44,12 +43,12 @@ def sonosFunc() -> None:
                     continue
         
         match command:
-            case 'volume':
+            case 'v':
                 currentVol = speaker.getCurrentVolume
                 print(f'Current Volume: {currentVol}')
                 continue
-            case 'volume set':
+            case 'vs':
                 newVol: int = int(input(f'{speaker.getName} set volume -> '))
                 speaker.setVolume(newVol)
                 print(f'New speaker Volume: {newVol}')
-                continue
+                continue 

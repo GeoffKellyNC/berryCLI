@@ -56,6 +56,8 @@ def gpt() -> None:
             case 'recipe':
                 recipeFunc()
                 continue
+            case 'chat':
+                gptChat(aiToken)
             case _:
                 print('Invalid Command..')
                 continue

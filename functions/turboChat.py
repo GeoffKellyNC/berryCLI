@@ -24,6 +24,8 @@ def turboChat() -> None:
     openai_api_key: str = config['OPEN_AI_KEY']
         
     berry: object = Berry(openai_api_key, "gpt-3.5-turbo")
+    # berry: object = Berry(openai_api_key, "gpt-3.5-turbo-16k")
+    
     
     while(turboActive):
         
